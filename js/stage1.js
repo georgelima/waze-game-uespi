@@ -119,7 +119,7 @@ const stage1State = {
       .start()
     game.physics.arcade.enable(this.fix)
 
-    this.fixes = 2
+    this.fixes = 3
     this.fixesText = game.add.text(15, 15, `Revisoes: ${this.getText(this.fixes)}`, {
       font: '20px emulogic',
       fill: '#FF0',
@@ -133,7 +133,7 @@ const stage1State = {
     this.emitter.setYSpeed(-50, 50)
     this.emitter.gravity.y = 0
 
-    this.time = 20
+    this.time = 30
     this.timeText = game.add.text(game.world.width - 15, 15, `Tempo: ${this.time}`, {
       font: '20px emulogic',
       fill: '#FF0',
