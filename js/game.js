@@ -1,4 +1,4 @@
-const game = new Phaser.Game(750, 500, Phaser.CANVAS)
+const game = new Phaser.Game(750, 500, Phaser.AUTO)
 
 game.global = {
   score: 0,

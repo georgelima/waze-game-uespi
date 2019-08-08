@@ -28,7 +28,9 @@ const loadState = {
     game.load.spritesheet('icons', 'img/icons.png', 32, 32)
 
     game.load.audio('getitem', 'sfx/getitem.mp3')
-    game.load.audio('loseitem', 'sfx/loseitem.mp3')
+    game.load.audio('jureg', 'sfx/faz_o_urro.mp3')
+    game.load.audio('darthvader', 'sfx/darth.mp3')
+    game.load.audio('lion', 'sfx/lion.mp3')
     game.load.audio('victory', 'sfx/victory.mp3')
     game.load.audio('jaws', 'sfx/jaws.mp3')
     game.load.audio('music', 'sfx/music.ogg')

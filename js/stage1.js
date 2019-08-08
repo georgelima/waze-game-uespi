@@ -2,7 +2,7 @@ const stage1State = {
   create() {
     this.isRunning = true
     this.isJawsMusicRunning = false
-    this.throttleTouchTeacher = this.throttle(() => this.touchTeacher(), 2000)
+    this.throttleTouchTeacher = this.throttle((player, enemy) => this.touchTeacher(enemy), 2000)
     game.add.sprite(0, 0, 'bg')
 
     this.soundGame = game.add.audio('gameMusic')
@@ -19,6 +19,15 @@ const stage1State = {
 
     this.soundReceiveFixes = game.add.audio('loseitem')
     this.soundReceiveFixes.volume = 0.5
+
+    this.soundJureg = game.add.audio('jureg')
+    this.soundJureg.volume = 0.5
+
+    this.soundDarthVader = game.add.audio('darthvader')
+    this.soundDarthVader.volume = 0.5
+
+    this.soundLion = game.add.audio('lion')
+    this.soundLion.volume = 0.5
 
     this.maze = []
 
@@ -110,7 +119,7 @@ const stage1State = {
       .start()
     game.physics.arcade.enable(this.fix)
 
-    this.fixes = 10
+    this.fixes = 2
     this.fixesText = game.add.text(15, 15, `Revisoes: ${this.getText(this.fixes)}`, {
       font: '20px emulogic',
       fill: '#FF0',
@@ -124,7 +133,7 @@ const stage1State = {
     this.emitter.setYSpeed(-50, 50)
     this.emitter.gravity.y = 0
 
-    this.time = 60
+    this.time = 20
     this.timeText = game.add.text(game.world.width - 15, 15, `Tempo: ${this.time}`, {
       font: '20px emulogic',
       fill: '#FF0',
@@ -221,8 +230,18 @@ const stage1State = {
     }
   },
 
-  touchTeacher() {
-    this.soundReceiveFixes.play()
+  touchTeacher(teacher) {
+    switch (teacher.key) {
+      case 'jureg':
+        this.soundJureg.play()
+        break
+      case 'lion':
+        this.soundLion.play()
+        break
+      case 'darthvader':
+        this.soundDarthVader.play()
+        break
+    }
 
     this.emitter.x = this.player.position.x
     this.emitter.y = this.player.position.y
@@ -348,9 +367,9 @@ const stage1State = {
 
   throttle(callback, limit) {
     var wait = false
-    return function() {
+    return function(...args) {
       if (!wait) {
-        callback.call()
+        callback(...args)
         wait = true
         setTimeout(function() {
           wait = false
